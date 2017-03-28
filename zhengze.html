@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>判断是否是    数字   字母   汉字   划线</title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		function isNumber(value)
+			{
+				return (/^\d$/.test(value))
+			}
+
+			/**
+			 * 判断是否为汉字
+			 * @param value
+			 * @return
+			 */
+			function isChinese(value)
+			{
+				var reg = /[^\u4E00-\u9FA5]/g;
+				if(reg.test(value))
+				{
+					return false;
+				}
+				return true;
+			}
+
+			/**
+			 * 判断是否为字母
+			 * @param value
+             * @returns {boolean}
+             */
+			function isEnglish(value) {
+				return (/[a-z]|[A-Z]/g.test(value));
+			}
+
+			/**
+			 * 判断是不是划线
+			 * @param value
+             * @returns {boolean}
+             */
+			function isLine(value) {
+				return (/-|_/.test(value));
+			}
+	</script>
+</html>
