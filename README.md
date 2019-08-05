@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-computed: {
-            orderList: function () {
-                var compare = function (idx) {
-                    return function (object1, object2) {
-                        var a = object1[idx];
-                        var b = object2[idx];
-                        if (b < a) {
-                            return -1;
-                        } else if (b > a) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
-                    };
-                };
-                return this.list.sort(compare('crtDate'));
-            }
-        },
-=======
 # myCode
-记录开发过程中的点点滴滴。从hello 
->>>>>>> master
+记录开发过程中的点点滴滴。从hello world 开始
+记于20190805
