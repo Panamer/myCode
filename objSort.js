@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 computed: {
             orderList: function () {
                 var compare = function (idx) {
@@ -17,7 +16,3 @@ computed: {
                 return this.list.sort(compare('crtDate'));
             }
         },
-=======
-# myCode
-记录开发过程中的点点滴滴。从hello 
->>>>>>> master
