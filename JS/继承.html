@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" content="">
+    <title>原型式的继承</title>
+  </head>
+  <body>
+    <p>如何创建一个继承自另一对象的Javascript对象？</p>
+  </body>
+</html>
+<script type="text/javascript">
+// 一个Person构造器 随便定义了一些属性  原型上定义了一个方法greeting
+  function Person(first, last, age, gender, interests) {
+    this.name = {
+      first, last
+    };
+    this.age = age;
+    this.gender  = gender;
+    this.interests = interests;
+  }
+  Person.prototype.greeting = function () {
+    alert(`I am ${this.name.first} 你好吗`)
+  }
+
+// 创建一个Teacher类 让它继承person的所有成员，同时也包括自己的属性
+  function Teacher(first, last, age, gender, interests, subject) {
+    // 让Teacher继承Person的属性和方法  其实这个this换成一个空对象的话 person的属性、方法会给这个空对象，也就是call的第一个参数
+    Person.call(this, first, last, age, gender, interests);
+
+    this.subject = subject;
+  }
+// 截止到这里 teacher已经可以继承person所有的属性啦，但是却没有greeting方法
+
+  Teacher.prototype = Object.create(Person.prototype);
+  // 加了上面这一行 就可以拿到greeting方法了，这才是继承  上面用的call方法只是改变了this指向，重新定义了一边属性
+  // 但是现在还有问题：Teacher()的prototype的constructor属性指的是Person()
+  // 可以加下面的代码解决
+  Teacher.prototype.constructor = Teacher;
+
+
+
+
+
+
+
+
+// 注：每一个函数对象（Function）都有一个prototype属性，并且只有函数对象有prototype属性，
+// 因为prototype本身就是定义在Function对象下的属性。当我们输入类似var person1=new Person(...)来构造对象时，
+// JavaScript实际上参考的是Person.prototype指向的对象来生成person1。
+// 另一方面，Person()函数是Person.prototype的构造函数，
+// 也就是说Person===Person.prototype.constructor（不信的话可以试试）。
+//
+// 在定义新的构造函数Teacher时，我们通过function.call来调用父类的构造函数，
+// 但是这样无法自动指定Teacher.prototype的值，这样Teacher.prototype就只能包含在构造函数里构造的属性，而没有方法。
+// 因此我们利用Object.create()方法将Person.prototype作为Teacher.prototype的原型对象，
+// 并改变其构造器指向，使之与Teacher关联。
+//
+// 任何您想要被继承的方法都应该定义在构造函数的prototype对象里，
+// 并且永远使用父类的prototype来创造子类的prototype，这样才不会打乱类继承结构。
+
+
+
+
+</script>
