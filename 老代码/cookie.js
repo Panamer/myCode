@@ -1,0 +1,2 @@
+$.cookie('userid',msg.user_data.userid,{expires: 7, path: '/', domain: 'banmaxiaozhen.com', secure: false});
+  $.cookie('username',msg.user_data.username,{expires: 7, path: '/', domain: 'banmaxiaozhen.com', secure: false});

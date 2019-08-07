@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      <p>实例对象中有个属性，__proto__ 也是对象，叫原型，不是标准的属性（每个浏览器的支持不同，导致结果不同，所以不标准）</p>
+      <p>狗仔函数中有一个属性，prototype，也是对象，叫原型，是标准属性，程序员专用</p>
+      原型的作用：共享数据，节约内存空间
+      <p>原型链：是一种关系，实例对象和原型对象之间的关系，是通过原型 __proto__ 来联系的</p>
+      <p>1、构造函数可以实例话对象</p>
+      <p>2、构造函数中有一个属性叫prototype，是构造函数的原型属性</p>
+      <p>3、构造函数的原型对象 prototype 中有一个constructor构造器，这个构造器指向的就是所在的原型对象所在的构造函数</p>
+      <p>4、实例对象的原型 __proto__ 指向的是该构造函数的原型对象</p>
+      <p>5、构造函数的原型对象 prototype 中的方法是可以被实例对象直接访问的</p>
+    </script>
+  </body>
+</html>
