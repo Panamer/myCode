@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>http协议</title>
+    <style media="screen">
+      body {
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      {{ message }}
+    </div>
+  </body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+  var app = new Vue({
+    el: "#app",
+    data: {
+      message: `
+      大佬,
+      京津冀 `
+    }
+  });
+</script>
+
+<!-- 原生的方法使用模板字符串是不换行的 -->
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+  $("#content").html(`
+    大佬,
+    京津冀
+  `);
+  $("#app").append(`
+  There are <b>99</b> items
+   in your basket, <em>2}</em>
+  are on sale!
+`);
+  const text = `
+    大佬,
+    京津冀
+  `;
+  console.log(text);
+  // document.getElementById("content").innerHTML = text;    这样写是不会换行的
+  // document.querySelector("h2").textContent
+</script>
