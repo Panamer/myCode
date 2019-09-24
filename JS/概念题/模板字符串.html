@@ -2,11 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Array对象应用</title>
+    <title>字符串的扩展--模板字符串</title>
   </head>
   <body>
     <select id="province"> </select>
     <p>` 模板字符串 `</p>
+    <textarea name="name" rows="8" cols="80"></textarea>
     <script>
       let provinces = [
         "北京市",
@@ -45,9 +46,13 @@
         "澳门特别行政区"
       ];
       const font = `
+      如果使用模板字符串表示多行字符串，所有的空格、缩进、换行都会被保留在输出中。
         模板字符串，
         只能以多行定义，
-        不能以多行展示
+        不能以多行展示,
+        加\\n也没用,
+        \r\n是输出的HTML代码换行，客户看到的效果没有换行。
+        如果是输出给浏览器，就用‘br/’
       `;
       let sel = document.getElementById("province");
       let len = provinces.length;
@@ -60,6 +65,8 @@
       console.log(html);
       sel.innerHTML = html;
       document.querySelector("p").innerHTML = font;
+      document.querySelector("textarea").innerHTML =
+        "这是一句话 " + "\n" + "嗯";
     </script>
   </body>
 </html>
