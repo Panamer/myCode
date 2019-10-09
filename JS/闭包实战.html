@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>闭包</title>
+</head>
+<body>
+    <a href="https://zhuanlan.zhihu.com/p/22486908?refer=study-fe" target="_blank">知乎解释</a>
+    <a href="https://baike.baidu.com/item/%E9%97%AD%E5%8C%85/10908873?fr=aladdin" target="_blank">百度百科</a>
+</body>
+    <script>
+      // 实现闭包的第一种方法
+      function closure() {
+        var m = 1;
+        function b() {
+          console.log(++m);
+        }
+        return b;
+      }
+      var a = closure();
+      a();
+      var foo = function () {
+        var t = 'post'
+      }
+      foo();
+      // 实现闭包的第二种方法
+      function A(x) {
+        function B(y) {
+          function C(z) {
+            console.log(x + y + z);
+          }
+          C(3);
+        }
+        B(2);
+      }
+      A(1);
+      // 实现闭包的第三种方法
+      var obj = {}
+      console.log(obj);
+      var dd = {
+        n:9,
+        obj: 1,
+        [obj]:0
+      }
+      console.log(JSON.stringify(dd));
+    </script>
+</html>
