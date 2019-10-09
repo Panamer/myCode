@@ -1,12 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>闭包的概念</title>
+    <style media="screen">
+      body { font-size: 1.2rem; }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <pre>
+        {{ message }}
+      </pre>
+    </div>
+  </body>
 </html>
+<script type="text/javascript">
+  var app = new Vue({
+    el: "#app",
+    data: {
+      message: ` `
+    }
+  });
+  app.message = `
+    闭包是JS函数作用域的副产品。
+    因为在JavaScript中 只有内部函数能访问到外部函数作用域的变量和函数，而外部函数不能访问到内部函数作用域的变量和函数。正好 闭包可以解决这个问题。
+    闭包的定义：有权访问其他函数作用域内变量的函数。
+    闭包是：要执行的代码块 和 局部变量所处的环境（作用域）的组合
+    闭包是函数和声明该函数的词法环境的组合。
+    在本质上，闭包是将函数内部和函数外部连接起来的桥梁
+
+    https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures
+
+    闭包的作用：
+    1. 可以在函数的外部访问到函数内部的局部变量。 
+    2. 在内存中维持一个变量，不会随着函数的结束而自动销毁。
+    3. 保护函数内的变量安全，
+    就是在a执行完并返回后，闭包使得Javascript的垃圾回收机制不会收回a所占用的资源，因为a的内部函数b的执行需要依赖a中的变量
+
+    闭包的坏处：
+    由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，
+    在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除
+
+  `;
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
