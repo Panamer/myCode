@@ -4,46 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>闭包</title>
+    <title>闭包实现</title>
 </head>
 <body>
+    <a href="https://www.cnblogs.com/xiaohuochai/p/6834565.html" target="_blank">多种方式实现闭包</a>
     <a href="https://zhuanlan.zhihu.com/p/22486908?refer=study-fe" target="_blank">知乎解释</a>
     <a href="https://baike.baidu.com/item/%E9%97%AD%E5%8C%85/10908873?fr=aladdin" target="_blank">百度百科</a>
 </body>
     <script>
-      // 实现闭包的第一种方法
+      // 实现闭包的第一种方法  最经典的方法：函数作为返回值被返回 不带入参
       function closure() {
         var m = 1;
         function b() {
-          console.log(++m);
+          return m++
         }
         return b;
       }
       var a = closure();
-      a();
-      var foo = function () {
-        var t = 'post'
-      }
-      foo();
-      // 实现闭包的第二种方法
+      console.log(a());
+      
+      // 第二种方法   函数作为返回值被返回 带入参
       function A(x) {
-        function B(y) {
-          function C(z) {
-            console.log(x + y + z);
+        return function B(y) {
+          return function C(z) {
+            return x * y * z;
           }
-          C(3);
         }
-        B(2);
       }
-      A(1);
-      // 实现闭包的第三种方法
-      var obj = {}
-      console.log(obj);
-      var dd = {
-        n:9,
-        obj: 1,
-        [obj]:0
+      console.log(A(1)(2)(1));
+
+      // 第三种方法   累加器：立即执行函数
+      var fn = (function (){
+        var local  = 3;
+        function foo() {
+          return ++local;
+        }
+        return foo;
+      })()
+      console.log(fn());
+      // 第四种方法   函数赋值：内部函数赋值给一个外部变量
+      var inner;
+      var F = function(){
+          var b = '4';
+          var N = function(){
+              return b;
+          };
+          inner = N;
+      };
+      F();
+      console.log(inner());
+      // 第五种方法 函数参数： 闭包可以通过函数参数传递函数的形式来实现
+      var Inner = function(fn){
+          console.log(fn());
       }
-      console.log(JSON.stringify(dd));
+      var F = function(){
+          var b = '5';
+          var N = function(){
+              return b;
+          }
+          Inner(N);
+      }
+      F();
+
+      // 第六种：循环赋值 
+      function foo(){
+          var arr = [];
+          for(var i = 0; i < 2; i++){
+              arr[i] = (function fn(j){
+                  return function test(){
+                      return j;
+                  }
+              })(i);
+          }
+          return arr;
+      }
+      var bar = foo();
+      console.log(bar[0]());//0
+      // 第七种： g(s)etter
+      //  我们通过提供getter()和setter()函数来将要操作的变量保存在函数内部，防止其暴露在外部
+      var getValue,setValue;
+      (function(){
+          var secret = 0;
+          getValue = function(){
+              return secret;
+          }
+          setValue = function(v){
+              if(typeof v === 'number'){
+                  secret = v;
+              }
+          }
+      })();
+      console.log(getValue());//0
+      setValue(1);
+      console.log(getValue());//1
     </script>
 </html>

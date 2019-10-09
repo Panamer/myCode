@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="https://juejin.im/post/5b8350246fb9a019c372d26d">如何实现 multi(2)(3)(4)=24?</a>
+</body>
+</html>
+<script>
+    // 第一种方法：闭包
+    function multi1(a) {
+        return function(b) {
+            return function(c) {
+                return a * b * c;
+            }
+        }
+    }
+    console.log(multi1(2)(3)(4));
+    
+    // 第二种方法：函数柯里化
+    function multi() {
+        var args = Array.prototype.slice.call(arguments);
+        var fn = function() {
+            var newArgs = args.concat(Array.prototype.slice.call(arguments));
+            return multi.apply(this, newArgs);
+        }
+        fn.toString = function() {
+            return args.reduce(function(a, b) {
+                return a * b;
+            })
+        }
+        return fn;
+    }
+    console.log(multi(2)(3)(4)(5));
+    
+</script>

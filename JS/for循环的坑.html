@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>for循环的坑</title>
+</head>
+<body>
+    当for循环里存在函数体的时候，函数体内拿到的i的值一直是i的最大值。因为是在for循环执行完毕以后才执行函数体
+    解决办法： 用let代替var
+    
+</body>
+<script >
+    for (var i=0; i<5; i++) {
+        setTimeout(function(){
+            console.log(i)
+        })
+    }
+    // 优化后：
+    for (var i=0; i<5; i++) {
+        (function(j){
+            console.log(j)
+        })(i)
+    }
+</script>
+</html>
