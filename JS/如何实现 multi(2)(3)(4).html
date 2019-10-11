@@ -20,7 +20,40 @@
         }
     }
     console.log(multi1(2)(3)(4));
-    
+    // 第二种方法 函数
+    function add(x) {
+        var sum = x;
+        var temp = function (y) {
+            sum = sum + y;
+            return temp;
+        }
+        temp.valueOf = temp.toString = function () {
+            return sum;
+        }
+        return temp;
+    }
+    console.log(add(1)(2)(3)(4));  //10
+    // ⚠️注意这里不是递归
+    // 函数内重写了tostring方法 是为了返回a。否则返回的是字符串类型的函数体
+    // 需要转换为字符串时，会调用toString，需要转换为数字时需要调用valueOf
+    function digui(a) {
+        var temp = function(b) {
+            return digui(a + b);
+        }
+        temp.toString = function() {
+            return a;
+        };
+        return temp;
+    }
+    console.log(digui(2)(3)(4)(5));
+    //第三种方法 飘逸
+    function py(num){
+        num += ~~py;
+        py.num = num;
+        return py;
+    }
+    py.valueOf = py.toString = function(){return py.num};
+    console.log(py(3)(4)(5)(6));
     // 第二种方法：函数柯里化
     function multi() {
         var args = Array.prototype.slice.call(arguments);
