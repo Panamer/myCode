@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>变量、函数的声明提前</title>
+</head>
+<body>
+    <pre>
+        JavaScript是一门解析性语言
+        在js代码执行的过程中，浏览器会先进行预解析
+        在预解析的过程中 会对变量声明、函数声明进行提前
+
+        在解决此类型问题的时候，谨记以下几条就可以了
+        1、变量声明提前：会把变量的声明提前到所在的作用域的最上面
+        2、函数声明提前：会把函数的声明提前到所在的作用域的最上面
+
+        解决问题的时候 先把声明提前 再赋值。把代码转成声明提前以后的结果就一目了然了。
+
+        补充：var出来的是全局变量   不带var的是隐式全局变量。隐式全局变量可以用delete销毁。
+             函数作用域对隐式全局变量无效，在函数内声明对隐式全局变量 在函数外部也可以访问
+    </pre>
+</body>
+</html>
+<script>
+    fn();
+    console.log(c); // 9
+    console.log(b); // 9
+    console.log(a); // 报错
+    function fn() {
+        var a=b=c=9;
+        console.log(a); // 9
+        console.log(b); // 9
+        console.log(c); // 9
+        
+    }
+    // 这道题 下面的三个都是9是没有问题的，为什么上面是两个9 一个报错呢
+    // 是因为 fn被变量声明提前转换成下面这样子了。b和c是隐式全局变量所以在函数外可以被访问到。
+    // a在函数内部是局部变量，函数外部访问不到 所以打印a就报错了
+    function fn() {
+        var a = 9;
+        b = 9;
+        c = 9;
+        console.log(a); // 9
+        console.log(b); // 9
+        console.log(c);
+    }
+</script>
