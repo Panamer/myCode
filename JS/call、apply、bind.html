@@ -13,6 +13,14 @@
         如果作为函数调用，this指的是window
         如果作为方法调用，this指的是调用它的那个对象
         this的指向是可以通过call、apply改变的
+
+        call()和apply()
+        ·这两个方法都是函数对象的方法，需要通过函数对象来调用
+        ·当对函数调用call()和apply()时都会调用函数执行，相当于()
+        ·在调用call()和apply()时，可以将一个对象指定为一个参数
+            此时函数内部的this就是这个对象
+        ·call()方法可以传递参数 放在对象之后 call(obj, a, b)
+        ·apply()方法传递参数需要放在数组内 apply(obj, [a, b])
     </pre>
 </body>
 </html>
