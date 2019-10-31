@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>遇到的问题有哪些？</title>
+</head>
+<body>
+    <pre>
+            遇到的问题：
+            关于接口请求被吞噬的问题，原因是桥接方法是异步的，H5处理这个异步在外层包了一层promise，
+                在调桥接成功的时候会resolve，没有做失败的时候reject（app端只提供了成功的回调 
+                所以H5拿不到失败的状态就没办法reject），调桥接失败这个promise被阻塞了，
+                封装的fetch方法里又用的是await，所以阻塞了JS的执行，下面的axios请求根本没发出去。
+                遇到问题的第一想法是 别的工程这样做过没问题，所以应该不是axios的问题，
+                那有可能是server的问题，server又看不到日志 所以只能自己排查，紧急上线处理的办法是用setTimeout
+                后续又追查问题 发现是代码有漏洞并及时做了修补。
+            关于安卓手机内嵌H5一直有异常抛出的问题：在联调的过程中vconsole里一直有一些没用的log被打印，影响联调，   
+                ios机器是没有的，所以当时猜测问题是发生在安卓机，之前让开发查过并没有解决，
+                这次就追着安卓开发同事一起看下，最终发现是在他们的公共库里有一段console。
+                总结经验：遇到问题一定要找根本不能只看表面瞎猜或者说解决不了
+            
+            H5调桥接—触发底层JS—-window下挂载着协议—app检测到协议—-加载桥接方法—-finished——执行回调—-H5回调函数
+    </pre>
+</body>
+</html>
