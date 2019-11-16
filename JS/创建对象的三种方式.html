@@ -33,14 +33,13 @@
     }
     var xi = new Jia();
     console.log(xi instanceof Jia); // 能够判断xi是属于jia类型的
+    console.log(xi.__proto__.constructor === Jia.prototype.constructor);
 
     // 自定义构造函数做个几件事：
     // 1、开辟空间存储对象
     // 2、把this设置为当前对象
     // 3、设置属性和方法的值
     // 4、把this对象返回
-
-
 
     //工厂模式创建对象
     function creatObject(name, sex) {
@@ -53,7 +52,7 @@
 
       return obj;
     }
-    var wang = creatObject('老王'， '男')
+    var wang = creatObject("老王", "男");
 
     /**
      * 工厂模式和自定义构造函数创建对象的区别
