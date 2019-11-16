@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>创建对象的三种方式</title>
+  </head>
+  <body></body>
+  <script type="text/javascript">
+    // 字面量的方式 实例对象
+    var lu = {
+      name: "lixiaolu",
+      pick: function() {
+        console.log("喜欢李小璐😍");
+      }
+    };
+
+    // 调用系统的构造函数
+    var pageone = new Object();
+    pageone.name = "pg";
+    pageone.play = function() {
+      console.log("lu 真好玩");
+    };
+
+    // 以上两种方式都不能判断对象是属于哪种类型的;
+
+    // 自定义构造函数
+    function Jia() {
+      this.name = name;
+      this.sex = sex;
+      this.dream = function() {
+        console.log("nstm");
+      };
+    }
+    var xi = new Jia();
+    console.log(xi instanceof Jia); // 能够判断xi是属于jia类型的
+
+    // 自定义构造函数做个几件事：
+    // 1、开辟空间存储对象
+    // 2、把this设置为当前对象
+    // 3、设置属性和方法的值
+    // 4、把this对象返回
+    //
+    //
+    //
+    //
+  </script>
+</html>
