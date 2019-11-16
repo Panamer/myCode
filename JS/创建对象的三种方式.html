@@ -24,7 +24,7 @@
     // 以上两种方式都不能判断对象是属于哪种类型的;
 
     // 自定义构造函数
-    function Jia() {
+    function Jia(name, sex) {
       this.name = name;
       this.sex = sex;
       this.dream = function() {
@@ -42,6 +42,17 @@
     //
     //
     //
-    //
+    //工厂模式创建对象
+    function creatObject(name, sex) {
+      var obj = new Object();
+      obj.name = name;
+      obj.sex = sex;
+      obj.speak = function() {
+        alert("內 好 啊！");
+      };
+
+      return obj;
+    }
+    var wang = creatObject('老王'， '男')
   </script>
 </html>
