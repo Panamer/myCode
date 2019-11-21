@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BFC及其原理</title>
+</head>
+<body>
+    <pre>
+    BFC是什么？
+        块格式化上下文（Block Formatting Context，BFC） 
+        是Web页面的可视化CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域
+    他有以下特性：
+        1、它是一个隔离的独立容器，容器里面元素和外部的元素相互不影响
+        2、BFC容器内部的盒子在垂直方向会一个挨一个的排列
+        3、BFC区域不会与float 盒子重叠，利用这个特性可以清除浮动
+        4、计算BFC区域的高度时，浮动元素也参与计算
+        5、创建新的BFC避免垂直方向两个相邻的div外边距合并的问题
+
+    如何触发BFC？
+        1、根元素（html）
+        2、浮动元素（元素的 float 不是 none）
+        3、绝对定位元素（元素的 position 为 absolute 或 fixed）
+        4、display为inline-block、table-cells、flex、inline-flex、flow-root（没有副作用的方案，但需注意兼容性）、grid、inline-grid等
+        5、overflow除了visible之外
+        6、...
+
+    BFC的作用：
+        1、清除浮动：把浮动元素的父元素设为BFC容器即可
+        2. 解决元素间上下边距发生折叠的问题（外边距塌陷）：把元素*放入*不同的BFC容器中
+        3. 防止元素间的重叠覆盖，可实现自适应两列布局。左边元素左浮动，右边元素设置为BFC容器
+        4、实现等高两栏布局。父元素overflow: hidden，左边元素左浮动，右边元素设置为BFC容器
+
+
+
+    </pre>
+    <a href="https://zhuanlan.zhihu.com/p/25321647">知乎 10分钟理解BFC</a>
+</body>
+</html>
