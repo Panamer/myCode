@@ -31,15 +31,27 @@
             我是一个浮动的div，现在我想让它高一点，高过另外一行文字吧，对吧，这样才能看到效果
         </div>
         这是一段很长很长很长很长很长很长很长很长（有多长随便啦）的文字
-        <!-- <div class="clearfix"></div> -->
+        <div class="clearfix"></div>
     </div>
 
 
     <!-- 
         清除浮动的方法：
-        1、加一个空的div并设置clear：both属性。 
-        2、给父级盒子加一个样式使其变成BFC：display: flow-root; 或者：overflow: auto;
-        
+        1、给需要清除浮动（排列在浮动元素下方）的盒子添加clear样式
+        2、在父元素结束标签之前插入清除浮动的块级元素div并设置clear：both属性。 
+        3、给父级盒子加一个样式使其变成BFC：display: flow-root; 或者：overflow: auto;
+        4、利用伪元素：
+            <div class="topDiv clearfix">
+                <div class="textDiv">...</div>
+                <div class="floatDiv">float left</div>
+            </div>
+            .clearfix:after {
+                content: '.';
+                height: 0;
+                display: block;
+                clear: both;
+            }
+
 
 
         
