@@ -8,5 +8,40 @@
 </head>
 <body>
     <a href="https://blog.csdn.net/Rainbow1995/article/details/91435367"></a>
+    <pre>
+        首先来说明一下$router 和 $route 的区别
+
+        $router是router实例，用作路由跳转，用法如下
+        this.$router.push({
+            name: 'router-name',
+            params: {
+                appNo: 123
+            }
+        })
+
+        $route当前激活的路由信息对象。这个属性是只读的，
+            里面的属性是 immutable (不可变) 的，不过你可以 watch (监测变化) 它
+        this.sid = this.$route.params.sid
+        this.uid = this.$route.params.uid
+
+        1、query传递参数
+            query携带的参数会以？开头被拼接到URL后面，不管是用path还是name都能正常传递参数。
+            query携带的参数可以在URL后看到
+            并且页面刷新 参数也不会丢失
+
+        2、
+            用params传参的时候只能用name，如果用path路由可以正常跳转但是参数带不过去。
+            params携带的参数在url里只能看到value
+            页面刷新  params携带的参数会丢
+            解决的办法是在router config里这样写：
+              {
+                path: '/shanghai/:success',
+                name: 'shanghai',
+                component: query
+              }
+            &&你需要提供路由的 name 或手写完整的带有参数的 path
+            router.push({ name: 'user', params: { userId }}) // -> /user/123
+            router.push({ path: `/user/${userId}` }) // -> /user/123
+    </pre>
 </body>
 </html>

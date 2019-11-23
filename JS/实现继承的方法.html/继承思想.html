@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title></title>
   </head>
   <body>
     <a href="https://blog.csdn.net/cpongo6/article/details/88716285"></a>
   </body>
   <script type="text/javascript">
-    function DOG(name){
+    function DOG(name) {
+      this.name = name;
+    }
 
-　　　　this.name = name;
+    DOG.prototype = { species: "犬科" };
 
-　　}
+    var dogA = new DOG("大毛");
 
-　　DOG.prototype = { species : '犬科' };
+    var dogB = new DOG("二毛");
 
+    alert(dogA.species); // 犬科
 
-　　var dogA = new DOG('大毛');
-
-　　var dogB = new DOG('二毛');
-
-
-　　alert(dogA.species); // 犬科
-
-　　alert(dogB.species); // 犬科
+    alert(dogB.species); // 犬科
   </script>
 </html>

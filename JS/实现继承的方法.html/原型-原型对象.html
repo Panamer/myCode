@@ -60,6 +60,12 @@
         constructor属性的含义就是指向该对象的构造函数，所有函数（此时看成对象了）最终的构造函数都指向Function
       </li>
       <li>hasOwnProperty</li>
+      <li>per.constructor === Person</li>
+      <li>per === Person.prototype</li>
+      <li>per.__proto__ === Person.prototype</li>
+      <li>per.constructor === Person.prototype.constructor</li>
+      <li>Person === Person.prototype.constructor</li>
+      <li>per.__proto__.constructor === Person.prototype.constructor</li>
     </ul>
   </body>
 </html>

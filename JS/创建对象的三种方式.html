@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>创建对象的三种方式</title>
+  </head>
+  <body></body>
+  <script type="text/javascript">
+    // 字面量的方式 实例对象
+    var lu = {
+      name: "lixiaolu",
+      pick: function() {
+        console.log("喜欢李小璐😍");
+      }
+    };
+
+    // 调用系统的构造函数
+    var pageone = new Object();
+    pageone.name = "pg";
+    pageone.play = function() {
+      console.log("lu 真好玩");
+    };
+
+    // 以上两种方式都不能判断对象是属于哪种类型的;
+
+    // 自定义构造函数
+    function Jia(name, sex) {
+      this.name = name;
+      this.sex = sex;
+      this.dream = function() {
+        console.log("nstm");
+      };
+    }
+    var xi = new Jia();
+    console.log(xi instanceof Jia); // 能够判断xi是属于jia类型的
+    console.log(xi.__proto__.constructor === Jia.prototype.constructor);
+
+    // 自定义构造函数做个几件事：
+    // 1、开辟空间存储对象
+    // 2、把this设置为当前对象
+    // 3、设置属性和方法的值
+    // 4、把this对象返回
+
+    //工厂模式创建对象
+    function creatObject(name, sex) {
+      var obj = new Object();
+      obj.name = name;
+      obj.sex = sex;
+      obj.speak = function() {
+        alert("內 好 啊！");
+      };
+
+      return obj;
+    }
+    var wang = creatObject("老王", "男");
+
+    /**
+     * 工厂模式和自定义构造函数创建对象的区别
+     *
+     *工厂模式：
+     *函数名是小写
+     *有new
+     *有返回值
+     *new之后的对象是当前对象
+     *直接调用函数来创建对象
+     *
+     *
+     *
+     *自定义构造函数：
+     *函数名首字母大写
+     *没有new
+     *没有返回值
+     *this是当前对象
+     *通过new关键字来创建对象
+     *
+     *
+     *
+     *
+     *
+     */
+  </script>
+</html>

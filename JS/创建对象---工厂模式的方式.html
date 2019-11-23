@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>工厂模式创建对象</title>
+  </head>
+  <body></body>
+  <script type="text/javascript">
+    <!-- 工厂设计模式：
+      这种设计模式抽象了创建具体对象的过程，
+      因为在ECMAScript中无法创建类，开发人员就发明了一种函数，
+      用函数来封装以特定接口创建对象的细节 -->
+
+
+      //工厂模式创建对象
+
+      function creatObject(name, sex) {
+        var obj = new Object();
+        obj.name = name;
+        obj.sex = sex;
+        obj.speak = function() {
+          alert("內 好 啊！");
+        };
+
+        return obj;
+      }
+      var wang = creatObject('老王'， '男')
+  </script>
+</html>

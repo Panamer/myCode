@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>原型的引入</title>
+  </head>
+  <body></body>
+</html>
+<script type="text/javascript">
+  // 原型的作用
+  // 1、数据共享、节省内存空间
+  // 2、原型继承
+  // 3、原型之间的方法可以相互访问
+  /**
+   * [Alibaba description]
+   * @constructor
+   * 构造函数创建的实例对象上的方法不是同一个方法
+   */
+  function Alibaba(nav) {
+    this.nav = nav;
+    this.field = function() {
+      console.log("这是一个方法");
+    };
+  }
+  const stu1 = new Alibaba();
+  const stu2 = new Alibaba();
+  console.log(stu1.field == stu2.field); //false
+
+
+  // 构造函数创建的实例对象上的方法不是同一个方法
+  // 如果我下面这样写，会创建100个对象，100个方法，占用大量内存空间
+  for (var i = 0; i < array.length; i++) {
+    var i = new Alibaba();
+    i.field();
+  }
+
+  /**
+   * [description]
+   * 一种比较low的解决方法,现在可以节省内存空间，但是不能避免命名冲突的问题
+   * 怎么更好的解决呢？ 利用原型
+   */
+  function fieldse = function() {
+    console.log()
+  }
+  function Alibaba(nav) {
+    this.nav = nav;
+    this.field = fieldse
+  }
+
+  /**
+   * 通过原型添加方法
+   * 原型的作用：数据共享、节省内存空间
+   * 思考😔：实例对象为什么可以使用原型对象的方法
+   * per.__proto__ == Person.prototype
+   */
+  function Tenson(nav) {
+     this.nav = nav;
+   }
+  Tenson.prototype.field = function() {
+    console.log('good');
+  }
+</script>
