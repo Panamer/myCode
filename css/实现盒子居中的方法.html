@@ -1,8 +1,125 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8" />
-    <title></title>
-  </head>
-  <body></body>
+
+<head>
+  <meta charset="utf-8" />
+  <title>让一个div水平垂直居中</title>
+</head>
+<style>
+  .parent {
+    width: 600px;
+    height: 600px;
+    background-color: tomato;
+  }
+
+  .child {
+    width: 200px;
+    height: 200px;
+    background-color: rgb(191, 216, 213);
+  }
+
+  /**
+      第一张方法：flex布局
+      div.parent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      父元素justify-content: center和父元素text-align：center 和 子元素margin auto 都能实现水平居中
+      div.child {
+        margin: auto;
+      }
+      默认主轴方向是垂直方向
+      或者这样也可以实现垂直居中：
+      div.parent {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
+    */
+  /**
+      第二种方法：定位
+      div.parent {
+        position: relative;
+      }
+      div.child {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto; // ⚠️ 这里必须加 margin：auto
+      }
+
+      或者：
+      div.parent {
+        position: relative;
+      }
+      div.child {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);   ⚠️ 这里只能这样简写 不能translateX，translateY分别设置
+      }
+
+      或者：
+      div.parent {
+        position: relative;
+      }
+      div.child {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -100px;
+        margin-top: -100px;
+      }
+    */
+  /**
+      第三种方法： grid布局
+      div.parent {
+        display: grid;
+      }
+      div.child {
+        justify-self: center;
+        align-self: center;
+      }
+    */
+  /*
+    第四种方法： 添加伪元素
+    
+    div.parent {
+      font-size: 0;
+      text-align: center;
+    }
+    .parent::before {
+      content: "";
+      display: inline-block;
+      width: 0;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    div.child {
+      display: inline-block;
+      vertical-align: middle;
+    }
+   */
+
+  div.parent{
+    /* display: flex; */
+    display: grid;
+  }
+  div.child{
+    margin: auto;
+  }
+</style>
+
+<body>
+  <div class="parent">
+    <div class="child">
+      还有两种方式 display: table , display: table-cell 这里就忽略了
+    </div>
+  </div>
+</body>
+
 </html>
