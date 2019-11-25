@@ -24,6 +24,10 @@
             H5调桥接—触发底层JS—-window下挂载着协议—app检测到协议—-加载桥接方法—-finished——执行回调—-H5回调函数
             报错：webViewJavascriptBridge is not defined 原因是安卓在初始化桥接的时候加载了一个js文件，这个报错被显示在
                 浏览器的vconsole里 刚开始一直认为是个常量在报错，后来查很久发现是安卓load文件失败
+
+            点击提交页面刷新：活动页面在输完手机号以后点击立即申请button出现页面不跳转 只是刷新了一下的问题。
+                原因是部分手机里 执行submit方法会有默认事件，存在兼容性。换成click事件解决问题
+            
     </pre>
 </body>
 </html>
