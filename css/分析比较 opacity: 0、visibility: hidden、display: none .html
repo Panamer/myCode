@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>分析比较 opacity: 0、visibility: hidden、display: none</title>
+</head>
+<body>
+    <pre>
+        共同点：都可以控制元素的显示隐藏
+        opacity: 0
+          不会让元素从渲染书中消失，渲染元素继续占据空间只是内容不可见，可点击
+          显示时只会让元素重绘，性能好
+        visibility: hidden
+          不会让元素从渲染书中消失，渲染元素继续占据空间只是内容不可见，不可点击
+        display: none
+          让元素从渲染树中消失，渲染的时候不占据空间，不可点击
+
+
+        继承： display: none和opacity: 0：是非继承属性，子孙节点消失由于元素从渲染树消失造成，
+          通过修改子孙节点属性无法显示。 visibility: hidden：是继承属性，子孙节点消失由于继承了hidden，
+          通过设置visibility: visible;可以让子孙节点显示
+
+        性能： displaynone : 修改元素会造成文档回流,读屏器不会读取display: none元素内容，性能消耗较大 
+              visibility:hidden: 修改元素只会造成本元素的重绘,性能消耗较少读屏器读取visibility: hidden元素内容
+              opacity: 0 ： 修改元素会造成重绘，性能消耗较少
+    </pre>
+</body>
+</html>
