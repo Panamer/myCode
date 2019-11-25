@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>setTimeout和setInterval的区别</title>
+</head>
+<body>
+    <pre>
+        setTimeout和setInterval都是定时器，都是window下的方法，都可以实现延时调用
+
+        区别是：
+            setTimeout是在指定的毫秒数后调用函数或表达式一次。clearTimeout（ID）关闭
+            setInterval是按照指定的周期，循环调用函数或者表达式。clearInterval（ID）关闭
+
+            setInterval有累积效应，会导致回调堆积。
+        
+        另外，用setTimeout模拟setInterval是有问题的，会有误差。
+        第一次setTimeout执行完以后，间隔了一段时间才会执行第二次setTimeout
+
+    </pre>
+</body>
+</html>
