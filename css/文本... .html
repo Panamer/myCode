@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,47 @@
     <title>css设置文本过长以后...处理
     </title>
 </head>
-<body>
+<style>
+    p {
+        width: 166px;
+        height: 200px;
+    }
+
+    /* 单行的实现方法 */
+    p.text {
+        /* overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; */
+    }
+
+    /* 多行的实现方法 */
+    p.text {
+        /* display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 6;
+        overflow: hidden; */
+    }
+
     
+</style>
+
+<body>
+    <p class="text">
+        今天是2019年11月25日，是一个好日子，为什么呢，因为我升职加薪了，今天是2019年11月25日，是一个好日子，为什么呢，因为我升职加薪了，今天是2019年11月25日，是一个好日子，为什么呢，因为我升职加薪了，今天是2019年11月25日，是一个好日子，为什么呢，因为我升职加薪了，今天是2019年11月25日，是一个好日子，为什么呢，因为我升职加薪了今天是2019年11月25日，是一个好日子，为什么呢，因为我升职加薪了
+    </p>
 </body>
+
 </html>
+<script>
+    // 使用split + 正则表达式将单词与单个文字切割出来存入words
+    // 加上 '...'
+    // 判断scrollHeight与clientHeight，超出的话就从words中pop一个出来
+// 这种方法必须要给高
+    
+    const p = document.querySelector('p')
+    let words = p.innerHTML.split(/(?<=[\u4e00-\u9fa5])|(?<=\w*?\b)/g)
+    while (p.scrollHeight > p.clientHeight) {
+        words.pop()
+        p.innerHTML = words.join('') + '...'
+    }
+</script>
