@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>改变this指向</title>
-</head>
-<body>
+  </head>
+  <body>
     <pre>
         this 指的是函数运行时所在的环境
         function内的this指向取决于函数的调用方式
@@ -21,6 +21,7 @@
             此时函数内部的this就是这个对象
         ·call()方法可以传递参数 放在对象之后 call(obj, a, b)
         ·apply()方法传递参数需要放在数组内 apply(obj, [a, b])
+        apply会把方法复制一份出来，但是不会立即调用。apply就是复制的意思
     </pre>
-</body>
+  </body>
 </html>

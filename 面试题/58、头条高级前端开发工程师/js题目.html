@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body></body>
+</html>
+<script type="text/javascript">
+  /**
+   * js继承
+   * js类多重继承的实现方式是什么
+   * js里面this指的是什么
+   * call apply bind的区别
+   * 手写发布订阅
+   * 手写封装一个事件通用类
+   * defineProperty hasownProperty  isEnumerable 都是做什么用的
+   */
+
+  var arr1 = [1, 2];
+  var arr2 = [3, 4];
+  arr1.push.apply(arr1, arr2);
+  console.log(arr1); // now arr1 is [1,2,3,4]
+
+  let arr3 = [1, 2];
+  let arr4 = [3, 4];
+  arr3.push(...arr4);
+  console.log(arr3); // now arr3 is [1,2,3,4]
+
+  // 手写一个继承
+  // 用原型继承的缺点： 会把父类上的私有、公有属性和方法都变成子类的公有属性和方法
+  // 用call继承的缺点： 只能继承父类的私有属性和方法
+  function Animal(name) {
+    // 私有属性
+    this.name = name;
+    // 私有方法
+    this.hello = () => console.log(this.name + "是动物，所以会睡觉😪");
+  }
+  // Animal.prototype.eat = function() {
+  //   console.log("Animal都会吃奶");
+  // };
+  //
+  // function Cat(name) {
+  //   Animal.call(this, name);
+  // }
+  // Cat.prototype = new Animal();
+  //
+  // var cat = new Cat("喵喵");
+  // cat.hello();
+  // cat.eat();
+  // 寄生式组合继承
+  function Animal(name) {
+    this.name = name;
+    this.hello = () => console.log(this.name + "是动物，所以会睡觉😪");
+  }
+  Animal.prototype.eat = function() {
+    console.log("Animal都会吃奶");
+  };
+
+  function Cat(name) {
+    Animal.call(this, name);
+  }
+
+  Cat.prototype = Object.create(Animal.prototype);
+  Cat.prototype.construct = Cat;
+
+  var cat = new Cat("喵喵");
+  cat.hello();
+  cat.eat();
+</script>
