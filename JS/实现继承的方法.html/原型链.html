@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>实例对象所使用的方法层层搜索</title>
+  </head>
+  <body>
+    <img src="./1573982728442.jpg" alt="" />
+    <a href="https://www.jianshu.com/p/08c07a953fa0">简书</a>
+  </body>
+</html>
+<script type="text/javascript">
+  /**
+   * 原型链：指的是实例对象和原型对象之间的关系
+   */
+  function City(name) {
+    this.name = name;
+    this.work = function() {
+      console.log("");
+    };
+  }
+  City.prototype.name = "上海";
+
+  const loc = new City("北京");
+  console.log(loc.name); // 北京
+  /**
+   * 这里为什么打印出来的结果是北京呢
+   * 是因为实例对象查找属性和方法的时候先从自身查
+   * 自身没有再去实例对象的__proto__指向的构造函数的原型对象prototype中找
+   * 找到了则使用 找不到则报错
+   * 以此递推
+   * 就形成了原型链
+   */
+</script>
