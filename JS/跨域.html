@@ -31,7 +31,23 @@
                     }
                 }
         </pre>
-        
-    
+
+
 </body>
 </html>
+<script type="text/javascript">
+  //jsonp跨域的原理 分为四步
+
+  
+  //创建script标签
+  var script = document.createElement('script')
+  // 设置回调函数
+  function getData(datalist){
+    console.log(datalist);
+  }
+  // 设置script 的src地址，也是设置请求的url
+  script.src = 'https://baidu.com.cn?callback=getData'
+  // 动态添加script 让请求生效
+  document.body.appendChild(script);
+  // 为什么是动态添加呢 因为是按需加载  在需要的时候才请求
+</script>
