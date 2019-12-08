@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+
+  function Person(name, age, salary){
+    this.name = name;
+    this.age = age;
+    this.salary = salary;
+  }
+  function f1(person){
+    person.name = 'ls';
+    // 这里改变了this指向 不会影响原对象
+    person = new Person('sa', 18, 100)
+  }
+  var p = new Person('zs',18,199)
+  console.log(p.name); // zs
+  f1(p);
+  console.log(p.name);// ls
+
+  function Person(name, age, salary){
+    this.name = name;
+    this.age = age;
+    this.salary = salary;
+  }
+  function f2(person){
+    person = new Person('sa', 18, 100)
+    person.name = 'ls';
+  }
+  var p = new Person('zs',18,199)
+  console.log(p.name); // zs
+  f2(p);
+  console.log(p.name);// zs
+</script>

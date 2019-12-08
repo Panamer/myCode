@@ -18,6 +18,12 @@
     background-color: rgb(191, 216, 213);
   }
 
+  /* 使用flex实现盒子水平垂直居中（老版本方式） */
+  div.parent {
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+  }
   /**
       第一张方法：flex布局
       div.parent {
@@ -86,7 +92,7 @@
     */
   /*
     第四种方法： 添加伪元素
-    
+
     div.parent {
       font-size: 0;
       text-align: center;
@@ -107,10 +113,10 @@
 
   div.parent{
     /* display: flex; */
-    display: grid;
+    /* display: grid; */
   }
   div.child{
-    margin: auto;
+    /* margin: auto; */
   }
 </style>
 
