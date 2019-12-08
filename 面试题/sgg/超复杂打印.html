@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+  // function Foo(){
+  //   getName = function(){ console.log (1)};
+  //   return this;
+  // }
+  // Foo.getName = function() { console.log(2) };
+  // Foo.prototype.getName = function() { console.log(3) };
+  // var getName = function() { console.log(4) };
+  // function getName() { console.log(5) };
+
+  // 下面是变量提升的结果
+  function Foo(){
+    getName = function(){ console.log (1)};
+    return this;
+  }
+  // var getName;
+  // function getName() { console.log(5) };
+  Foo.getName = function() { console.log(2) };
+  Foo.prototype.getName = function() { console.log(3) };
+  getName = function() { console.log(4) };
+
+
+
+  // 打印以下结果
+  Foo.getName();  // 2                                        普通函数的getName方法
+  getName();  // 4                                            经过变量提升后只剩下下面的getName
+  Foo().getName();  // 1                                      普通函数指向后的 window.getName
+  // getName = function(){ console.log (1)};                  上面的代码执行完以后 getName被重新赋值
+  getName();  // 1                                            此时的getName打印是1
+  new Foo.getName();  // 2                                    不带（）普通函数的getName方法
+  new Foo().getName();  // 3                                  带()构造函数原型上的getName
+  new new Foo().getName();  // 3                              带()构造函数原型上的getName
+</script>
