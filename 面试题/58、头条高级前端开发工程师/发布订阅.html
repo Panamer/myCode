@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    http://ppt.baomitu.com/d/5510e8c9#/21
+  </body>
+</html>
+<script type="text/javascript">
+  /**
+   * [events description]事件派发
+   * @type {Object}
+   */
+ var Emmitter = (function () {
+    var events = {};
+    var on = (name, callback) => {
+        var list = events[name] || (events[name] = []);
+        list.push(callback);
+        return this;
+    }
+    var off = (name, callback) => {
+        if (!(name || callback)) {
+            events = {};
+        }
+        var list = events[name]
+        if (list) {
+            if (callback) {
+                for (var i = list.length - 1; i >= 0; i--) {
+                    if (list[i] === callback) {
+                        list.splice(i, 1);
+                    }
+                }
+            } else {
+                delete events[name];
+            }
+        }
+    }
+    var emit = (name, data) => {
+        var list = events[name];
+        if (list) {
+            list = list.slice();
+            for (var i = 0, len = list.length; i < len; i++) {
+                list[i](data);
+            }
+        }
+    }
+    return {
+        on: on,
+        off: off,
+        emit: emit
+    }
+})()
+  Emmitter.on("abc", () => {
+      console.log("eeeee")
+  })
+  Emmitter.on("a", () => {
+      console.log("abc")
+  })
+  Emmitter.emit("abc")
+    </script>
+</script>

@@ -67,4 +67,56 @@
   var cat = new Cat("喵喵");
   cat.hello();
   cat.eat();
+
+  // ES5转ES6
+  function Person(name) {
+    this.name = name;
+  }
+  Person.prototype.feting = function() {
+    return this.name + "哈哈哈";
+  };
+
+  class Person {
+    construct(name) {
+      this.name = name;
+    }
+    feting() {
+      return this.name + "哈哈哈";
+    }
+  }
+
+  function Employee(name, title) {
+    Person.call(this, name);
+    this.title = title;
+  }
+  Employee.prototype = Object.create(Person.prototype);
+  Employee.prototype.construct = Employee;
+  Employee.prototype.describe = function() {
+    return (
+      Person.prototype.describe.call(this) + // super.describe()
+      " (" +
+      this.title +
+      ")"
+    );
+  };
+  class Employee extends Person {
+    construct(name, title) {
+      super(name);
+      this.title = title;
+    }
+    describe() {
+      return super.describe() + " (" + this.title + ")";
+    }
+  }
+
+  // 变量提升
+  var x = 3;
+  function func(randomize) {
+    if (randomize) {
+      var x = Math.random(); // (A) scope: whole function
+      return x;
+    }
+    return x; // accesses the x from line A
+  }
+  func(false); // undefined
 </script>
