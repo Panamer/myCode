@@ -7,15 +7,15 @@
     <title>冒泡排序</title>
 </head>
 <body>
-    
+
 </body>
 </html>
 <script>
     const list = [1,3,6,9,99,54,32,43,65,8,10]
     function bubbleSort (arr) {
         var max = arr.length - 1;
-        for (var j = 0; j < max; j++) {
-            for (var i = 0; i < max - j; i++) {
+        for (let j = 0; j < max; j++) {
+            for (let i = 0; i < max - j; i++) {
                 if (arr[i] > arr[i + 1]) {
                     [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]
                 }
@@ -24,5 +24,5 @@
         return arr;
     }
     console.log(bubbleSort(list));
-    
+
 </script>
