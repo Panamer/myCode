@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+  /**
+    共同点： 节流和防抖都可以实现n秒内事件只触发一次，都是通过闭包+setTimeout+apply来实现的
+    不同点： fn.apply这行代码，在节流下是可以提到外层的，能使事件先执行一次。在防抖下是不可以的,会导致防抖失效
+    如果持续不停的操作事件节流的现象是： 很有规律的每间隔一定的周期触发一次事件；
+                      防抖的现象是： 只有动作停下来（并延时一个周期）以后才会触发一次事件
+    fn.apply的作用是改变this指向，使this指向调用throttle的对象，比如input
+  */
+  /**
+    节流 在动作发生后 函数执行前(delay)期间，如果动作再次发生 则无视该动作。直到事件执行完才能再次被触发。
+        所以节流可以稀释事件触发的频率
+    思路：每次事件被触发时都判断当前可执行状态是否为true
+    应用场景：鼠标/触摸屏的mouseover/touchmove事件
+            页面窗口的resize事件
+            滚动条的scroll事件
+  */
+  function throttle1(func, wait) {
+    let timer = null;
+    return function(...args) {
+        if (!timer) {
+            timer = setTimeout(() => {
+                func.apply(this, args);
+            	timer = null;
+            }, wait)
+        }
+    }
+  }
+
+  function throttle2(func, wait) {
+    var previous = 0;
+    return function(...args) {
+        let now = Date.now();
+        if (now - previous > wait) {
+            func.apply(this, args);
+            previous = now;
+        }
+    }
+  }
+
+  function throttle(fn, delay){
+    let runable = true;
+    return function() {
+      if (!runable) return;
+      runable = false;
+      setTimeout(() => {
+        fn.apply(this, arguments)
+        runable = true;
+      }, delay)
+    }
+  }
+  function log(e){
+    console.log(this.timer);
+  }
+  window.addEventListener('resize', throttle(log, 3000));
+  /**
+    防抖 高频事件在n秒内只触发一次，如果在n秒内再次被触发，则重新开始延时
+    思路：每次事件触发时都清除之前的延时调用方法
+    应用场景：按钮点击事件/input事件，防止用户多次重复提交
+  */
+  function debounce(fn, delay) {
+    let timer = null;
+    return function() {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        fn.apply(this, arguments);
+      }, delay)
+    }
+  }
+</script>
