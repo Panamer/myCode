@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+  function quickSort(ary){
+    if (ary.length < 2) {
+      return ary;
+    }
+    let pointIndex = Math.floor(ary.length / 2);
+    let pointValue = ary.splice(pointIndex, 1)[0];
+    let leftAry = [];
+    let rightAry = [];
+    for (var i = 0; i < ary.length; i++) {
+      let cur = ary[i];
+      cur > pointValue?rightAry.push(cur):leftAry.push(cur);
+    }
+    return quickSort(leftAry).concat(pointValue, quickSort(rightAry));
+  }
+  const res = quickSort([32,25,7,11,13,15,17,9])
+  console.log(res);
+</script>
