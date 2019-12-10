@@ -24,5 +24,72 @@
         return arr;
     }
     console.log(bubbleSort(list));
+    // 冒泡排序 
+    function dubble(arr){
+        let max = arr.length - 1;
+        for (let i = 0; i < max; i++) {
+            for (let j = 0; j < max - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+                }
+            }
+        }
+        return arr;
+    }
 
+    // 插入排序
+    function insert(arr) {
+        let newarr = [];
+        newarr.push(arr[0]);
+        for (let i = 1; i < arr.length; i++) {
+            let temp = arr[i];
+            for (let j = newarr.length-1; j >= 0; j--) {
+                if (temp > newarr[j]) {
+                    newarr.splice(j+1, 0, temp)
+                    break;
+                }
+                if (j === 0) {
+                    newarr.unshift(temp);
+                }
+            }
+        }
+        return newarr;
+    }
+
+
+    // 快速排序
+    function quickSort(array){
+        if (array.length < 2) return array;
+        let middleIndex = Math.floor(array.length / 2);
+        let middleValue = array.splice(middleIndex, 1)[0];
+        let leftArr = [];
+        let rightArr = [];
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] > middleValue) {
+                rightArr.push(array[i]);
+            } else {
+                leftArr.push(array[i]);
+            }
+        }
+        return quickSort(leftArr).concat(middleValue, quickSort(rightArr));
+    }
+    console.log(dubble(list));
+    console.log(insert(list));
+    console.log(quickSort(list));
+    /**
+        冒泡排序：两层for循环 第一层是arr.length - 1
+                第二层是arr.length - 1 - i
+                把 j和j+1的位置对调
+        插入排序：两层for循环  先把第一个值放进新数组
+                从第二个值开始循环  j=newArr.length-1
+                取出老数组当前项A
+                循环新数组  拿到新数组当前项B
+                如果A大于B  就newArr.splice(j+1, 0 A)   break
+                j === 0    newArr.unshift(A)
+        快速排序：如果数组的长度是1 就直接return数组
+                先把中间数拿出来
+                循环老数组中的每一项 如果比中间数大放后面的数组，否则放前面的数组
+                return 递归
+    */
+    
 </script>
