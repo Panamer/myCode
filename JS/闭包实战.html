@@ -47,39 +47,12 @@
       var F = function(){
           var b = '4';
           var N = function(){
-              return b;
+              return b++;
           };
           inner = N;
       };
       F();
       console.log(inner());
-      // 第五种方法 函数参数： 闭包可以通过函数参数传递函数的形式来实现
-      var Inner = function(fn){
-          console.log(fn());
-      }
-      var F = function(){
-          var b = '5';
-          var N = function(){
-              return b;
-          }
-          Inner(N);
-      }
-      F();
-
-      // 第六种：循环赋值 
-      function foo(){
-          var arr = [];
-          for(var i = 0; i < 2; i++){
-              arr[i] = (function fn(j){
-                  return function test(){
-                      return j;
-                  }
-              })(i);
-          }
-          return arr;
-      }
-      var bar = foo();
-      console.log(bar[0]());//0
       // 第七种： g(s)etter
       //  我们通过提供getter()和setter()函数来将要操作的变量保存在函数内部，防止其暴露在外部
       var getValue,setValue;
