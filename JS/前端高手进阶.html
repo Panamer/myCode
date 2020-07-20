@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高手进阶</title>
+</head>
+<body>
+  <!-- meta 标签: 自动刷新 跳转 , 5s后跳转到同域下的page2.html-->
+  <meta http-equiv="Refresf" content="5"; URL=page2.html>
+  <!-- 定时刷新 -->
+  <meta http-equiv="Refresh" content="60">  
+
+  <!-- 性能优化: 
+    script标签: 调整加载顺序 提升渲染速度.  三个属性: async defer  type=module  立即请求文件 但不阻塞渲染引擎
+    link标签: 通过预处理提升渲染速度
+  -->
+  <!-- js是单线程的, JavaScript引擎和渲染引擎来回切换会导致消耗性能, 样式修改会导致重排, 颜色大小修改会导致重绘
+    重排消耗的性能一定比重绘大
+    高效操作dom: 在循环外操作dom  批量操作dom  缓存元素集合
+   -->
+  
+</body>
+</html>
