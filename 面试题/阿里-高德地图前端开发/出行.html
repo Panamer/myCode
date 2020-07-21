@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高德面试复盘</title>
+</head>
+
+<body>
+  1.行内元素和块级元素有哪些？两者之间可以通过什么方式相互转化？
+  在html中 元素主要分为 块级元素、行内元素 还有一种是行内块
+  行内元素: 没有宽高,不会换行    title a style b strong  head  i  span
+  块级元素 有宽高 会自动换行  div p h1  
+  行内块 img  td  input 
+
+  2.position属性有哪些？是根据什么位置进行定位？
+   relative absolute fixed static inhreit
+
+  3.jquery选择器有哪些？优先级？？
+    ID选择器  class选择器  tag标签选择器
+
+  4.垂直水平居中的方式有哪些？
+
+  5.css的执行顺序？
+    外联 内联 内嵌  从上到下 从左到右  相同的选择器后面会覆盖前面的   不同的选择器要比较优先级  四位数0001 0011
+
+  6.如果一个页面中出现了相同的id值，如果加样式的话是给那一个加？为什么？
+    会给第一个id  因为浏览器获取到第一个ID就停止获取了 底下写多少个不考虑
+
+  7.用过vue吗？vue有什么优点？vue-router原理？生命周期？常用的生命周期是哪个？vue-axios原理？
+    渐进式的框架、轻量、易学  适用于小型和大型应用  见兼容其他框架
+    router 分为hash history  监听路由的变化 router-view 自动匹配到对应的组件 更新视图  怎么保证路由变化自动更新呢 数据响应式
+    初始化阶段 挂载阶段 更新阶段 销毁阶段
+
+  8.原型和原型链常用吗？知道原理吗？
+    实例对象上都有一个__proto__   构造函数上都有一个prototype 这俩都是原型  proto的兼容性不好 是程序员专用的
+    原型的作用是  数据共享 节省空间  实现继承
+
+  9.手写一个onready方法？
+
+  10.讲讲变量的解构赋值
+      对象的解构赋值 {...obj, ...data}
+      数组的解构赋值 [...array]  实现合并
+
+  11.浅拷贝和深拷贝？
+   解构赋值、直接赋值和object.assign 都是浅拷贝
+   递归循环实现深拷贝 缺点是性能差  object.parse的缺点是不能拷贝function
+
+
+  12、什么是BFC规范?
+
+
+  13、盒模型的各种属性
+
+  14、box-sizing 包括什么？
+
+  15、display:block  inline分别有什么作用？
+
+  16、选择器的优先级  id class tag（div）
+
+  17、知道transform吗？
+
+  18、读过js的哪些书？
+
+  19、setTimeout执行原理
+
+  20、如何实现继承（代码）【如何让子类继承父类的方法与属性？】
+
+  21、vue的优势和生命周期
+
+  22、数据结构与算法
+
+  23、四则运算的实现  一个操作数栈，一个操作符栈
+
+  24、手写快排
+</body>
+
+</html>
