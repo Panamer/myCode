@@ -4,11 +4,21 @@
     <meta charset="utf-8" />
     <title></title>
   </head>
-  <body></body>
+  <body>
+    1、将静态内容和动态请求 放在不同的服务器上, 更方便cdn缓存
+    2、突破浏览器并发限制 比如: chrome 是6个    每个浏览器都有一个并发浏览请求数
+    3、节省主域名连接数
+    4、节省cookie宽带  不是所有资源都需要登录态
+
+    注意：并非同一个网站资源在越多的域名下就越好，原因有两点：
+    因为浏览器在做DNS解析时也会花费时间，太多的域名会导致解析时间过长，访问速度变慢。
+    如果域名采用的是HTTPS协议，则需要安装更多的证书，在部署时也存在一定的问题，加大了操作难度。
+  </body>
 </html>
 <script type="text/javascript">
   /**
    * 为什么百度网站的资源会放在二级域名下 比如image.baidu.com  和cookie相关
    * 用animation会卡成狗 用transform优化
    */
+
 </script>
