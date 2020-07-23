@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>回调依赖</title>
+</head>
+
+<body>
+  <div>
+    -=-
+  </div>
+
+</body>
+
+</html>
+<script>
+  const func1 = (t = '') => Promise.resolve(t + '结果1')
+  const func2 = (t = '') => Promise.resolve(t + '结果2')
+  const func3 = (t = '') => Promise.resolve(t + '结果3')
+  // all的用法 拿到所有接口的返回以后 再执行回调
+  Promise.all([func1(), func2(), func3()])
+    .then(([result1, result2, result3]) => { document.body.innerHTML = [result1, result2, result3] });
+  // 下一次的请求 依赖上一次的结果 reduce实现
+  [func1, func2, func3].reduce((p, f) => {
+    return p.then((t) => {
+      return f(t)
+    })
+  }, Promise.resolve()).then(result3 => { console.log(result3) });
+  // async await 实现
+  async function fetchAll(SafeArray) {
+    let p;
+    for (const fn of SafeArray) {
+      p = await fn(p)
+    }
+    return p;
+  }
+  fetchAll([func1, func2, func3]).then(result3 => { console.log(result3) });
+
+</script>
