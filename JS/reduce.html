@@ -19,16 +19,28 @@
   const func1 = (t = '') => Promise.resolve(t + '结果1')
   const func2 = (t = '') => Promise.resolve(t + '结果2')
   const func3 = (t = '') => Promise.resolve(t + '结果3')
+
   // all的用法 拿到所有接口的返回以后 再执行回调
   Promise.all([func1(), func2(), func3()])
     .then(([result1, result2, result3]) => { document.body.innerHTML = [result1, result2, result3] });
+
+  /** 
+   * 四种方法实现 回调依赖
+  */
+  // promise 链
+  Promise.resolve().then(func1).then(func2).then(func3).then(result3 => { console.log(1111, result3) });
+
+  // 使用reduce实现 链式调用
+  ([func1, func2, func3]).reduce((resp, f) => resp.then(f), Promise.resolve()).then(result3 => { console.log(2222, result3) });
   // 下一次的请求 依赖上一次的结果 reduce实现
   [func1, func2, func3].reduce((p, f) => {
     return p.then((t) => {
       return f(t)
     })
-  }, Promise.resolve()).then(result3 => { console.log(result3) });
-  // async await 实现
+  }, Promise.resolve()).then(result3 => { console.log(2222, result3) });
+
+
+  // async await es6实现
   async function fetchAll(SafeArray) {
     let p;
     for (const fn of SafeArray) {
@@ -36,6 +48,12 @@
     }
     return p;
   }
-  fetchAll([func1, func2, func3]).then(result3 => { console.log(result3) });
+  fetchAll([func1, func2, func3]).then(result3 => { console.log(3333, result3) });
 
+  // 封装一个通用的
+  const cb = (rep, val) => rep.then(val);
+  const composeAsync = (...funcs) => (fn) => funcs.reduce(cb, Promise.resolve(fn));
+
+  const result  = composeAsync(func1, func2, func3)
+  result('默认值').then(result3 => { console.log(4444, result3) });
 </script>
